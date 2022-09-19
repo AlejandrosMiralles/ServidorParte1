@@ -30,4 +30,43 @@
 
 
 
+    //Crea un array bidimensional de alumnos
+    $alumnos = [
+        [
+            'id' => 1,
+            'nombre' => 'pepe',
+            'edad' => 9
+        ], [
+            'id' => 2,
+            'nombre' => 'Alicia',
+            'edad' => 10
+        ], [
+            'id' => 3,
+            'nombre' => 'Juanita',
+            'edad' => 10
+        ]
+    ]
+    ;
+
+    //Crear una tabla html que muestre el alterior array
+    print("<table>");
+    foreach($alumnos as $alumno ){
+        print("<tr>");
+        foreach($alumno as $clave => $dato){
+            print("<th>$dato</th>");
+        }
+        print("</tr>");
+    }
+    print("</table>");
+
+
+
+    //Crear un array indexado con los nombres
+    print_r(array_column($alumnos, 'nombre'));
+
+
+    //Hacer un array de numeros y sumarlos
+    $arrayNumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9 ,10];
+
+    print '<br/>' . array_sum($arrayNumeros). '<br/>';
 ?>
