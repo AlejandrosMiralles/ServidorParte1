@@ -4,30 +4,31 @@
         $resultado = [];
 
         //Mayusculas
-        $comienzoRango = 65;
-        $finalRango = 90 ;
+        $comienzoRango = ord('A');
+        $finalRango = ord('Z') ;
 
         $resultado = array_merge($resultado, 
             devolverCaracteresEspecificos($upper, $comienzoRango,
                                             $finalRango));
     
         //minusculas
-        $comienzoRango = 97;
-        $finalRango =  122;
+        $comienzoRango = ord('a');
+        $finalRango =  ord('z');
 
         $resultado = array_merge($resultado, 
-            devolverCaracteresEspecificos($upper, $comienzoRango,
+            devolverCaracteresEspecificos($lower, $comienzoRango,
                                             $finalRango));
 
         //numeros
-        $comienzoRango = 48;
-        $finalRango = 57 ;
+        $comienzoRango = ord('0');
+        $finalRango = ord('9') ;
 
         $resultado = array_merge($resultado, 
-            devolverCaracteresEspecificos($upper, $comienzoRango,
+            devolverCaracteresEspecificos($numeric, $comienzoRango,
                                             $finalRango));
         //otros
-        $resultado = array_merge($resultado, devolverCaracteresNoAlfanumericos($other));
+        $resultado = array_merge($resultado, 
+                        devolverCaracteresNoAlfanumericos($other));
     
         shuffle($resultado);
 
@@ -37,8 +38,8 @@
 
     function devolverCaracteresEspecificos($cantidad, $desdeElCarac, $hastaElCarac){
         $resultado = [];
-        for($i = 0; $cantidad < $i; ++$i){
-            $resultado = chr(rand($desdeElCarac, $hastaElCarac));
+        for($i = 0; $cantidad > $i; ++$i){
+            $resultado[] = chr(rand($desdeElCarac, $hastaElCarac));
         }
 
         return $resultado;
@@ -48,17 +49,19 @@
         $resultado = [];
 
         $i = 0;
-        while ($cantidad < $i){
-            $caracterASCII = rand(0, 126);
+        while ($cantidad > $i){
+            $caracterASCII = rand(32, 126); //Los caracteres de fuera de ese rango los coge mal o lno los coge
 
-            $esUnNumero = 48 < $caracterASCII && 57 > $caracterASCII;
-            $esUnaLetra = (65 < $caracterASCII && 90 > $caracterASCII) || 
-                            (97 < $caracterASCII && 122 > $caracterASCII ) ;
+            $esUnNumero = ord('0') < $caracterASCII && ord('9') > $caracterASCII;
+            $esUnaLetra = (ord('A') < $caracterASCII && ord('Z') > $caracterASCII) || 
+                            (ord('a') < $caracterASCII && ord('z') > $caracterASCII ) ;
             if (! $esUnNumero && ! $esUnaLetra ){
-                $resultado = chr($caracterASCII);
+                $resultado[] = chr($caracterASCII);
                 $i++;
             }
         }
+
+        return $resultado;
     }
 
     echo rand_Pass();
