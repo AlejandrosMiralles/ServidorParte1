@@ -8,7 +8,7 @@
             $errores[] = "No se ha introducido un nombre!";
         }
 
-        if(empty($_POST['email'])){
+        if(empty($_POST['email']) && ! filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
             $errores[] = "No se ha introducida un email";
         }
 
