@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    require "./biblioteca.php";
+
     if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST' ){
         $errores = [];
 
@@ -17,22 +19,7 @@
         if (empty($errores)){
             //Acceso a base de datos
 
-            $opcionesAccesoBD = array(
-
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-            
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            
-                PDO::ATTR_PERSISTENT => true
-            
-            );
-
-            $pdo = new PDO(
-                'mysql:host=localhost;dbname=registration; charset=utf8',
-                'root',
-                'sa',
-                $opcionesAccesoBD
-            );
+            $pdo = accederALaBaseDeDatos();
 
             //Sacar usuario solicitado
             $nombreUserForm = $_POST['nombre'];
@@ -54,11 +41,8 @@
                 $_SESSION['email'] = $registroUser['email'];
 
                 //Se redirige a la pagina que le envio ahi o a index
-                if ( isset($_GET['returnToUrl'])){
-                    header("Location: " . $_GET['returnToUrl'] . ".php") ;
-                } else {
-                    header("location: index.php");
-                }
+                volverALaPaginaInicial();
+
             } else {
                 echo "El nombre o la contraseña son erroneas";
             }

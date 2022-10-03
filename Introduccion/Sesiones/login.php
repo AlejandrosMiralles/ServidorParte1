@@ -1,4 +1,6 @@
 <?php
+    require "./biblioteca.php";
+
     session_start();
 
     if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST' ){
@@ -21,24 +23,9 @@
         
         if (empty($errores)){
             //Acceso a base de datos
-            
-            $opcionesAccesoBD = array(
+            $pdo = accederALaBaseDeDatos();
 
-                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
             
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            
-                PDO::ATTR_PERSISTENT => true
-            
-            );
-
-            $pdo = new PDO(
-                'mysql:host=localhost;dbname=registration; charset=utf8',
-                'root',
-                'sa',
-                $opcionesAccesoBD
-            );
-
             //Guardar nuevo usuario
             $nombreUser = $_POST['nombre'];
             $emailUser = $_POST['email'];
@@ -57,11 +44,7 @@
             $_SESSION['email'] = $emailUser;
 
             //Se redirige a la pagina que le envio ahi o a index
-            if ( isset($_GET['returnToUrl'])){
-                header("Location: " . $_GET['returnToUrl'] . ".php") ;
-            } else {
-                header("location: index.php");
-            }
+            volverALaPaginaInicial();
 
         } else {
             print_r($errores);

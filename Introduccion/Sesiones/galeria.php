@@ -1,5 +1,5 @@
 <?php
-    require __DIR__ . "biblioteca.php";
+    require "./biblioteca.php";
 
     session_start();
 
