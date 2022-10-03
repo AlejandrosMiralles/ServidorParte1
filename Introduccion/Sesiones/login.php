@@ -25,7 +25,7 @@
             //Acceso a base de datos
             $pdo = accederALaBaseDeDatos();
 
-            
+
             //Guardar nuevo usuario
             $nombreUser = $_POST['nombre'];
             $emailUser = $_POST['email'];
@@ -68,6 +68,7 @@
         <p>Email: <input type="text" name="email" /> </p>
         <p>Password: <input type="password" name="password1" /> </p>
         <p>Confirm Password: <input type="password" name="password2" /> </p>
+        <input type="hidden" name="returnToUrl" value=<?php echo $_GET["returnToUrl"] ?? "" ?> />
         <input type="submit" name="submit" value="Registrarse" />
     </form>
     <br/><br/>

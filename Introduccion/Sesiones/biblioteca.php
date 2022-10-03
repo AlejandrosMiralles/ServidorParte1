@@ -6,8 +6,8 @@
     }
 
     function volverALaPaginaInicial(){
-        if ( isset($_GET['returnToUrl'])){
-            header("Location: " . $_GET['returnToUrl'] . ".php") ;
+        if ( "" != $_POST["returnToUrl"]){
+            header("Location: " . $_POST["returnToUrl"] . ".php") ;
         } else {
             header("location: index.php");
         }

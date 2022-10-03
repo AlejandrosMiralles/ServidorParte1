@@ -3,7 +3,7 @@
 
     session_start();
 
-    chequearSesionActiva("asociados.php");
+    chequearSesionActiva("asociados");
     
 ?>
 

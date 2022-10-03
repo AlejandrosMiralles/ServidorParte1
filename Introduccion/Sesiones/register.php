@@ -4,6 +4,7 @@
     require "./biblioteca.php";
 
     if (isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == 'POST' ){
+
         $errores = [];
 
         if(empty($_POST['nombre'])){
@@ -20,6 +21,8 @@
             //Acceso a base de datos
 
             $pdo = accederALaBaseDeDatos();
+
+            
 
             //Sacar usuario solicitado
             $nombreUserForm = $_POST['nombre'];
@@ -70,6 +73,7 @@
         <p>Nombre: <input type="text" name="nombre" />  </p>
         <p>Password: <input type="password" name="password1" /> </p>
         <p>Confirm Password: <input type="password" name="password2" /> </p>
+        <input type="hidden" name="returnToUrl" value=<?php echo $_GET["returnToUrl"] ?? "" ?> />
         <input type="submit" name="submit" value="Registrarse" />
     </form>
     <br/><br/>
