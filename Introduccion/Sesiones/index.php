@@ -10,5 +10,7 @@
     <a href="./asociados.php" >asociados</a>
     <a href="./galeria.php" >galeria</a>
     
+    <!-- Uso un enlace para no complicarme la vida. También se podría usar un formulario o hacerlo dinamicamente con javascript -->
+    <a href="./logout.php">logout</a>
 </body>
 </html>
