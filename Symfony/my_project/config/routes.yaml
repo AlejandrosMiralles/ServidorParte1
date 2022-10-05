@@ -15,7 +15,7 @@ blog_list:
     controller: App\Controller\BlogController::list
 blog_show:
     path:     /blog/{entryId}
-    controller: App\Controller\BlogController::showç
+    controller: App\Controller\BlogController::show
 
 blog_list_twig:
     path:     /blogtwig
